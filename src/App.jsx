@@ -1,39 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
+import React, { useEffect } from 'react';
+import create from 'zustand';
 import './App.css';
 
+const useStore = create(set => ({
+    count: 0,
+    setCount: (count) => set(state => ({ ...state, count }))
+}));
+
 function App() {
-  // Create the count state.
-  const [count, setCount] = useState(0);
-  // Create the counter (+1 every second).
-  useEffect(() => {
-    const timer = setTimeout(() => setCount(count + 1), 1000);
-    return () => clearTimeout(timer);
-  }, [count, setCount]);
-  // Return the App component.
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.jsx</code> and save to reload.
-        </p>
-        <p>
-          Page has been open for <code>{count}</code> seconds.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </p>
-      </header>
-    </div>
-  );
+    const { count, setCount } = useStore(state => state);
+    useEffect(() => {
+        const timer = setTimeout(() => setCount(count + 1), 100);
+        return () => clearTimeout(timer);
+    }, [count, setCount]);
+
+    return (
+        <div className="App">
+            <p>
+                Page has been open for <code>{count * 100}</code> milliseconds.
+            </p>
+        </div>
+    );
 }
 
 export default App;
