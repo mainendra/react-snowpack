@@ -1,4 +1,6 @@
-# New Project
+# React snowpack
+
+React test application build using snowpack build tool
 
 > ✨ Bootstrapped with Create Snowpack App (CSA).
 
