@@ -16,9 +16,11 @@ function App() {
 
     return (
         <div className="App">
-            <p>
-                Page has been open for <code>{count * 100}</code> milliseconds.
-            </p>
+            <header className="App-header">
+                <p>
+                    Page has been open for <code>{count * 100}</code> milliseconds.
+                </p>
+            </header>
         </div>
     );
 }
